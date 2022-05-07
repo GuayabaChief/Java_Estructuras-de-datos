@@ -1,0 +1,110 @@
+
+
+public class Listasimple{
+	public class Nodo{//Creamos los nodos
+		private Object info;
+		private Nodo siguiente;
+		
+		public Nodo(){
+			info = null;//Contenido del nodo
+			siguiente = null;//Apunta sguiente nodo
+		}
+		
+		public Nodo(Object o, Nodo n){//Coloca la info y apunta al siguiente nodo
+			setInfo(o);
+			setSig(n);
+		}
+		
+		public void setInfo(Object o){
+			info= o;
+		}
+		
+		public void setSig(Nodo n){
+			siguiente = n;
+		}
+		
+		public Object getInfo(){//Obtiene la info
+			return info;
+		}
+		
+		public Nodo getSig(){//Obtiene el siguiente (apunta)
+			return siguiente;
+		}
+	}
+	
+	public Lista(){//Creamos la lista
+		cabeza=null;
+	}
+	
+	public void insertarDerecha(Object o){
+		Nodo aux =new Nodo(o, null);
+		aux.setSig(cabeza);
+		cabeza=aux;
+	}
+	
+	public Object extraer(){
+		Object fuera = null;
+		if(!isEmpty()){
+			fuera=cabeza.getInfo();
+			cabeza=cabeza.getSig();
+		}
+		return fuera;
+	}
+	
+	public void print(int n) {
+    // if the list is empty, do nothing
+    if (!isEmpty()) {
+      Node tmp = first;
+
+      // iterates until i reaches n or the list is finished.
+      for (int i = 0; i < n; i++) {
+        tmp = tmp.getNext();
+        if (tmp == null)
+          return; // the list is finished
+      }
+      System.out.println(tmp.getInfo());
+    }
+  }
+
+  public void print() {
+    // if the list is empty, do nothing
+    if (!isEmpty()) {
+      Node tmp = first;
+      // iterates until the list is finished
+      while (tmp != null) {
+        System.out.println(tmp.getInfo());
+        tmp = tmp.getNext();
+      }
+    }
+  }
+
+  public boolean isEmpty() {
+    if (first == null)
+      return true;
+    else
+      return false;
+  }
+  
+  public static void main(String args[]){
+	  insertarDerecha(new Integer(1));
+	  insertarDerecha(new Integer(2));
+	  insertarDerecha(new Integer(3));
+	  insertarDerecha(new Integer(4));
+	  insertarDerecha(new Integer(5));
+	  
+	  print();
+	  print(0);
+	  print(1);
+	  print(2);
+	  print(3);
+	  print(4);
+	  
+	  System.out.println(extraer());
+	  System.out.println(extraer());
+	  System.out.println(extraer());
+	  System.out.println(extraer());
+	  System.out.println(extraer());
+	  
+	  print();
+  }
+}
